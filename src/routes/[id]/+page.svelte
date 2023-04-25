@@ -1,21 +1,32 @@
 <script lang="ts">
   import PageWrapper from '../../components/PageWrapper.svelte';
+  import Header from '../../components/Header.svelte';
+  import type { Post } from '../../types/Post';
 
   export let data;
-  let post = data.post;
+  const post: Post | null = data.post;
 </script>
 
 <div>
   {#if post}
+    <Header />
     <PageWrapper>
-      <p>
-        {post.title}
-      </p>
-      <p>
-        {post.content}
-      </p>
+      <div class="post">
+        <p>
+          {post.title}
+        </p>
+        <p>
+          {post.content}
+        </p>
+      </div>
     </PageWrapper>
   {:else}
-    <p>404 Not Found</p>
+    404 Not Found
   {/if}
 </div>
+
+<style>
+  .post {
+    margin-inline: 40px;
+  }
+</style>

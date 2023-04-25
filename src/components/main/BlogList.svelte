@@ -7,16 +7,21 @@
 <div class="main">
   {#if post.image}
     <div class="top">
-      <img class="img" src={post.image} alt="banner" />
+      <img
+        class="img"
+        src={post.image}
+        alt="banner"
+        on:click={() => (location.href = `/${post.id}`)}
+      />
     </div>
   {/if}
   <div class="bottom">
-    <h2 class="title">
+    <h2 class="title" on:click={() => (location.href = `/${post.id}`)}>
       {post.title}
     </h2>
     <p class="content">
       {post.content.length > 150
-        ? post.content.substring(0, 150) + ' ...'
+        ? post.content.substring(0, 150) + '...'
         : post.content}
     </p>
   </div>
@@ -53,10 +58,12 @@
     margin-top: 24px;
     width: 100%;
     border-radius: 16px;
+    cursor: pointer;
   }
 
   .title {
     font-size: 1.5rem;
+    cursor: pointer;
   }
 
   .content {
@@ -76,6 +83,7 @@
     border-radius: 16px;
     padding: 8px 16px;
     background-color: #eaeaea;
+    cursor: pointer;
   }
 
   .date {

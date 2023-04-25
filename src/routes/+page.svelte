@@ -1,7 +1,9 @@
 <script lang="ts">
   import BlogList from '../components/main/BlogList.svelte';
   import PageWrapper from '../components/PageWrapper.svelte';
-  import { post } from '../test/data';
+  import { post, introduce } from '../test/data';
+  import Header from '../components/Header.svelte';
+  import Introduce from '../components/main/Introduce.svelte';
 </script>
 
 <svelte:head>
@@ -20,8 +22,11 @@
   <link rel="canonical" href="https://dohyun.it" />
 </svelte:head>
 
+<Header />
+
 <section>
   <PageWrapper>
+    <Introduce data={introduce} />
     {#each post as data}
       {#if !data.private || false}
         <BlogList post={data} />
