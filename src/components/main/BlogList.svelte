@@ -1,62 +1,85 @@
 <script lang="ts">
-	import type { Post } from '../../types/Post';
+  import type { Post } from '../../types/Post';
 
-	export let post: Post;
+  export let post: Post;
 </script>
 
 <div class="main">
-	{#if post.image}
-		<div class="top">
-			<img class="img" src={post.image} alt="banner" />
-		</div>
-	{/if}
-	<div class="bottom">
-		<h2 class="title">
-			{post.title}
-		</h2>
-		<p class="content">
-			{post.content}
-		</p>
-	</div>
-	{#if post.tag?.length > 0}
-		<div />
-	{/if}
-	<div class="date">
-		{post.date.getFullYear()}년
-		{post.date.getMonth() + 1}월
-		{post.date.getDate()}일 ·
-		{post.comment}개의 댓글 ·
-		{post.like}명의 좋아요
-	</div>
+  {#if post.image}
+    <div class="top">
+      <img class="img" src={post.image} alt="banner" />
+    </div>
+  {/if}
+  <div class="bottom">
+    <h2 class="title">
+      {post.title}
+    </h2>
+    <p class="content">
+      {post.content.length > 150
+        ? post.content.substring(0, 150) + ' ...'
+        : post.content}
+    </p>
+  </div>
+  {#if post.tag?.length > 0}
+    <div class="tag">
+      {#each post.tag as tag}
+        <div class="tag-child">
+          {tag}
+        </div>
+      {/each}
+    </div>
+  {/if}
+  <div class="date">
+    {post.date.getFullYear()}년
+    {post.date.getMonth() + 1}월
+    {post.date.getDate()}일 ·
+    {post.comment}개의 댓글 ·
+    {post.like}명의 좋아요
+  </div>
 </div>
 
 <style>
-	.main {
-		margin: 40px;
-		padding-inline: 24px;
-		padding-bottom: 24px;
-		box-shadow: 0 4px 20px rgba(96, 96, 96, 0.25);
-		border-radius: 16px;
-		display: flex;
-		flex-direction: column;
-	}
+  .main {
+    margin: 40px;
+    padding-inline: 24px;
+    padding-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(96, 96, 96, 0.25);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+  }
 
-	.img {
-		margin-top: 24px;
-		width: 100%;
-		border-radius: 16px;
-	}
+  .img {
+    margin-top: 24px;
+    width: 100%;
+    border-radius: 16px;
+  }
 
-	.title {
-		font-size: 1.5rem;
-	}
+  .title {
+    font-size: 1.5rem;
+  }
 
-	.content {
-		font-size: 1rem;
-	}
+  .content {
+    font-size: 1rem;
+  }
 
-	.date {
-		font-size: 0.85rem;
-		color: dimgray;
-	}
+  .tag {
+    margin-bottom: 24px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    gap: 16px;
+  }
+
+  .tag-child {
+    border-radius: 16px;
+    padding: 8px 16px;
+    background-color: #eaeaea;
+  }
+
+  .date {
+    font-size: 0.85rem;
+    color: dimgray;
+  }
 </style>
