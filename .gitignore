@@ -1,6 +1,8 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,webstorm,intellij+all,git,svelte,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,webstorm,intellij+all,git,svelte,node
 
+.idea
+
 /build
 
 ### Git ###
