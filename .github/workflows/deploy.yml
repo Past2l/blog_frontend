@@ -6,7 +6,7 @@ on:
 
 env:
   NAME: blog_frontend
-  HOST_PORT: 4000
+  HOST_PORT: 4001
   CONTAINER_PORT: 3000
 
 jobs:
