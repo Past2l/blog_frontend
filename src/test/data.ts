@@ -4,6 +4,7 @@ import type { Introduce } from '../types/Introduce';
 export const introduce: Introduce = {
   name: 'Past2l',
   content: 'test',
+  image: '/favicon.png',
 };
 
 export const post: Post[] = [

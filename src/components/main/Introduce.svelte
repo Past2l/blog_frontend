@@ -28,5 +28,6 @@
 
   .img {
     width: 10em;
+    border-radius: 100%;
   }
 </style>
