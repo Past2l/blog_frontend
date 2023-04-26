@@ -1,27 +1,31 @@
 <script>
   import PageWrapper from '../components/PageWrapper.svelte';
   import { PUBLIC_WEBSITE_URL } from '$env/static/public';
+  import theme from '../store/theme';
+
+  $: isDark = $theme === 'dark';
 </script>
 
 <header>
   <PageWrapper>
     <div class="wrapper">
-      <img
-        class="icon clickable"
-        src="/favicon.png"
-        alt="icon"
-        on:click={() => (location.href = PUBLIC_WEBSITE_URL)}
-      />
+      <a on:click={() => (location.href = PUBLIC_WEBSITE_URL)}>
+        <img class="icon" src="/favicon.png" alt="icon" />
+      </a>
       <ul>
         <li>
-          <img class="svg icon clickable" src="/icons/dark.svg" alt="dark" />
+          <a on:click={() => theme.set(isDark ? 'light' : 'dark')}>
+            <img
+              class="svg-color icon"
+              src="/icons/{isDark ? 'light' : 'dark'}.svg"
+              alt="change to {isDark ? 'light' : 'dark'}"
+            />
+          </a>
         </li>
         <li>
-          <img
-            class="svg icon clickable"
-            src="/icons/search.svg"
-            alt="search"
-          />
+          <a>
+            <img class="svg-color icon" src="/icons/search.svg" alt="search" />
+          </a>
         </li>
       </ul>
     </div>
@@ -47,17 +51,13 @@
     justify-content: space-between;
   }
 
-  .clickable {
-    cursor: pointer;
-  }
-
   .icon {
     width: 40px;
     height: 40px;
     margin-block: 10px;
   }
 
-  .svg {
+  .svg-color {
     filter: invert(56%) sepia(2%) saturate(0%) hue-rotate(205deg)
       brightness(89%) contrast(88%);
   }
@@ -68,5 +68,9 @@
     list-style: none;
     gap: 24px;
     margin: 0;
+  }
+
+  a {
+    cursor: pointer;
   }
 </style>

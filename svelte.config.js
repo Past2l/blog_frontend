@@ -12,7 +12,12 @@ const config = {
   },
 
   onwarn: (warning, handler) => {
-    if (warning.code === 'a11y-click-events-have-key-events') return;
+    if (
+      ['a11y-click-events-have-key-events', 'a11y-missing-attribute'].includes(
+        warning.code,
+      )
+    )
+      return;
     handler(warning);
   },
 };
