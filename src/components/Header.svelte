@@ -8,24 +8,29 @@
 
 <header>
   <PageWrapper>
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="wrapper">
-      <a on:click={() => (location.href = PUBLIC_WEBSITE_URL)}>
-        <img class="icon" src="/favicon.png" alt="icon" />
-      </a>
+      <img
+        on:click={() => (location.href = PUBLIC_WEBSITE_URL)}
+        class="icon-40 clickable"
+        src="/favicon.png"
+        alt="icon"
+      />
       <ul>
         <li>
-          <a on:click={() => theme.set(isDark ? 'light' : 'dark')}>
-            <img
-              class="svg-color icon"
-              src="/icons/{isDark ? 'light' : 'dark'}.svg"
-              alt="change to {isDark ? 'light' : 'dark'}"
-            />
-          </a>
+          <img
+            on:click={() => theme.set(isDark ? 'light' : 'dark')}
+            class="svg-color icon-32 clickable"
+            src="/icons/{isDark ? 'light' : 'dark'}.svg"
+            alt="change to {isDark ? 'light' : 'dark'}"
+          />
         </li>
         <li>
-          <a>
-            <img class="svg-color icon" src="/icons/search.svg" alt="search" />
-          </a>
+          <img
+            class="svg-color icon-32 clickable"
+            src="/icons/search.svg"
+            alt="search"
+          />
         </li>
       </ul>
     </div>
@@ -49,12 +54,22 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    height: 100%;
   }
 
-  .icon {
+  .clickable {
+    cursor: pointer;
+  }
+
+  .icon-32 {
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon-40 {
     width: 40px;
     height: 40px;
-    margin-block: 10px;
   }
 
   .svg-color {
@@ -68,9 +83,5 @@
     list-style: none;
     gap: 24px;
     margin: 0;
-  }
-
-  a {
-    cursor: pointer;
   }
 </style>
